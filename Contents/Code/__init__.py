@@ -333,7 +333,7 @@ def ShowFav(sender):
 
     for show_name in sorted(set(show_list)):
         if show_name == '':
-        continue
+          continue
         #show_name = unicode(show_name, 'latin-1')
         clean_show_name = String.StripDiacritics(show_name)
         for clean_show_name in fav_show_list:
