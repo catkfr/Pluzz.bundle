@@ -321,7 +321,7 @@ def ShowMenu(sender):
     return oc
 
 @route('/video/pluzz/favshow')
-def ShowMenu(sender):
+def ShowFav(sender):
     oc = ObjectContainer(title1='Programmes Favoris')
     show_list = []
     fav_show_list = ["Peppa Pig","Sam le Pompier"]
