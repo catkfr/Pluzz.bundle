@@ -94,6 +94,18 @@ def VideoMainMenu():
     dir.Append(
         Function(
             DirectoryItem(
+                ShowFav,
+                "Programmes Favoris",
+                subtitle="subtitle",
+                summary="Programmes Favoris",
+                thumb=R(ICON),
+                art=R(ART)
+            )
+        )
+    )
+    dir.Append(
+        Function(
+            DirectoryItem(
                 LiveMenu,
                 "Live",
                 subtitle="subtitle",
@@ -308,6 +320,33 @@ def ShowMenu(sender):
 	    )
     return oc
 
+@route('/video/pluzz/favshow')
+def ShowMenu(sender):
+    oc = ObjectContainer(title1='Programmes Favoris')
+    show_list = []
+    fav_show_list = ["Peppa Pig","Sam le Pompier"]
+    for chaine in ["France1","France2","France3", "France3_Regions","France4","France5","FranceO"]:
+        json_cat = Data.Load('catch_up_%s.json' % chaine.lower())
+        #objects = JSON.ObjectFromString(json_cat, encoding='iso-8859-15')
+        objects = JSON.ObjectFromString(json_cat, encoding='latin-1')
+        show_list += [ show['titre'] for show in objects['programmes'] if show['titre'] <> '' ]
+
+    for show_name in sorted(set(show_list)):
+        if show_name == '':
+        continue
+        #show_name = unicode(show_name, 'latin-1')
+        clean_show_name = String.StripDiacritics(show_name)
+        for clean_show_name in fav_show_list:
+            oc.add(
+            DirectoryObject(
+                key=Callback(MediaView, ContentType='show', ContentFilter=show_name, title=clean_show_name ),
+                title=L(clean_show_name),
+                summary=L(clean_show_name),
+                thumb=R(ICON),
+                art=R(ART)
+            )
+            )
+    return oc
 @route('/video/pluzz/mostwatched')
 def MostWatched(sender):
     return MediaView(ContentType='mostwatched', ContentFilter='', title='Les plus vus' )
