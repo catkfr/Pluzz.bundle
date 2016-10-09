@@ -347,6 +347,7 @@ def ShowFav(sender):
             )
             )
     return oc
+
 @route('/video/pluzz/mostwatched')
 def MostWatched(sender):
     return MediaView(ContentType='mostwatched', ContentFilter='', title='Les plus vus' )
