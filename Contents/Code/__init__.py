@@ -336,7 +336,7 @@ def ShowFav(sender):
           continue
         #show_name = unicode(show_name, 'latin-1')
         clean_show_name = String.StripDiacritics(show_name)
-        for clean_show_name in fav_show_list:
+        if clean_show_name in fav_show_list:
             oc.add(
             DirectoryObject(
                 key=Callback(MediaView, ContentType='show', ContentFilter=show_name, title=clean_show_name ),
