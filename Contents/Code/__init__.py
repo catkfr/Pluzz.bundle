@@ -324,7 +324,7 @@ def ShowMenu(sender):
 def ShowFav(sender):
     oc = ObjectContainer(title1='Programmes Favoris')
     show_list = []
-    fav_show_list = ["Peppa Pig","Sam le Pompier"]
+    fav_show_list = ["Peppa Pig","Sam le pompier"]
     for chaine in ["France1","France2","France3", "France3_Regions","France4","France5","FranceO"]:
         json_cat = Data.Load('catch_up_%s.json' % chaine.lower())
         #objects = JSON.ObjectFromString(json_cat, encoding='iso-8859-15')
